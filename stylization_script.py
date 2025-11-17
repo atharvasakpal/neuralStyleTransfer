@@ -15,7 +15,10 @@ def stylize_static_image(inference_config):
 
     # Prepare the model - load the weights and put the model into evaluation mode
     stylization_model = TransformerNet().to(device)
-    training_state = torch.load(os.path.join(inference_config["model_binaries_path"], inference_config["model_name"]))
+    training_state = torch.load(
+    os.path.join(inference_config["model_binaries_path"], inference_config["model_name"]),
+    map_location=torch.device('cpu')
+)
     state_dict = training_state["state_dict"]
     stylization_model.load_state_dict(state_dict, strict=True)
     stylization_model.eval()
@@ -67,10 +70,10 @@ if __name__ == "__main__":
     #
     parser = argparse.ArgumentParser()
     # Put image name or directory containing images (if you'd like to do a batch stylization on all those images)
-    parser.add_argument("--content_input", type=str, help="Content image(s) to stylize", default='taj_mahal.jpg')
+    parser.add_argument("--content_input", type=str, help="Content image(s) to stylize", default='000000000650.jpg')
     parser.add_argument("--batch_size", type=int, help="Batch size used only if you set content_input to a directory", default=5)
     parser.add_argument("--img_width", type=int, help="Resize content image to this width", default=500)
-    parser.add_argument("--model_name", type=str, help="Model binary to use for stylization", default='mosaic_4e5_e2.pth')
+    parser.add_argument("--model_name", type=str, help="Model binary to use for stylization", default='starry_v3.pth')
 
     # Less frequently used arguments
     parser.add_argument("--should_not_display", action='store_false', help="Should display the stylized result")
