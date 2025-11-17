@@ -200,3 +200,4 @@ If you'd love to have some more AI-related content in your life :nerd_face:, con
 ## Licence
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/gordicaleksa/pytorch-nst-feedforward/blob/master/LICENCE)# neuralStyleTransfer
+# neuralStyleTransfer
